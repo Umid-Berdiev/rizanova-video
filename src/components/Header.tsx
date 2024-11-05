@@ -18,7 +18,10 @@ export const Header: FC<Props> = ({ locale }) => {
 
   return (
     <>
-      {!pathname?.startsWith(`/${locale}/auth`) && (
+      {!(
+        pathname?.startsWith(`/${locale}/auth`) ||
+        pathname?.startsWith(`/${locale}/player`)
+      ) && (
         <header>
           <div className='wrapper'>
             <a href={`/${locale}`} className='logo'>
@@ -126,69 +129,6 @@ export const Header: FC<Props> = ({ locale }) => {
               fill='white'
             />
           </svg>
-        </div>
-      </div>
-
-      <div
-        className='fade myModalTheme modal'
-        id='myModalTheme'
-        tabIndex={-1}
-        role='dialog'
-        aria-labelledby='myModalMovieLabel'
-        aria-hidden='true'
-      >
-        <div className='modal-dialog' role='document'>
-          <div className='modal-content'>
-            <button
-              type='button'
-              className='close-modal-button'
-              data-dismiss='modal'
-              aria-label='Close'
-            >
-              <svg
-                width='28'
-                height='29'
-                viewBox='0 0 28 29'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <rect y='0.5' width='28' height='28' rx='14' fill='#222124' />
-                <path
-                  d='M10.667 11.1667L17.3337 17.8333'
-                  stroke='white'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-                <path
-                  d='M17.3337 11.1667L10.667 17.8333'
-                  stroke='white'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </button>
-            <h3>Tema rangi</h3>
-            <form action='#' className='form-theme'>
-              <input type='radio' checked id='theme1' name='theme' />
-              <label htmlFor='theme1'>Oq</label>
-              <input type='radio' id='theme2' name='theme' />
-              <label htmlFor='theme2'>Qora</label>
-            </form>
-            <div className='modal-buttons'>
-              <button className='btn-custom btn-more' type='button'>
-                Bekor qilish
-              </button>
-              <button
-                data-dismiss='modal'
-                className='btn-custom btn-red'
-                type='button'
-              >
-                Saqlash
-              </button>
-            </div>
-          </div>
         </div>
       </div>
 

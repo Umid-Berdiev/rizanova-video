@@ -26,7 +26,7 @@ export default function ProfileSection({ locale }: { locale: string }) {
     const phoneDialog = document.getElementById(
       'phone-dialog'
     ) as HTMLDialogElement
-    setThemeDialog(phoneDialog)
+    setPhoneDialog(phoneDialog)
   }, [])
 
   return (
@@ -58,20 +58,20 @@ export default function ProfileSection({ locale }: { locale: string }) {
               >
                 <rect width='36' height='36' rx='18' fill='#18171A' />
                 <path
-                  fill-rule='evenodd'
-                  clip-rule='evenodd'
+                  fillRule='evenodd'
+                  clipRule='evenodd'
                   d='M11.293 21.619L21.619 11.293C22.009 10.903 22.642 10.903 23.032 11.293L24.708 12.969C25.098 13.359 25.098 13.992 24.708 14.382L14.381 24.707C14.194 24.895 13.94 25 13.675 25H11V22.325C11 22.06 11.105 21.806 11.293 21.619Z'
                   stroke='white'
-                  stroke-width='1.5'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
                 <path
                   d='M19.75 13.1602L22.84 16.2502'
                   stroke='white'
-                  stroke-width='1.5'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
               </svg>
               <div className='text'>
@@ -96,9 +96,9 @@ export default function ProfileSection({ locale }: { locale: string }) {
               <path
                 d='M18 24L22 20L18 16'
                 stroke='#0D0D0D'
-                stroke-width='1.5'
-                stroke-linecap='round'
-                stroke-linejoin='round'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
               />
             </svg>
           </a>
@@ -179,19 +179,19 @@ export default function ProfileSection({ locale }: { locale: string }) {
             <div className='mt-4 flex gap-3'>
               <button className='flex flex-col items-center gap-1'>
                 <RedYoutubeIcon />
-                <p className='text-content-tertiary text-xs'>YouTube</p>
+                <p className='text-xs text-content-tertiary'>YouTube</p>
               </button>
               <button className='flex flex-col items-center gap-1'>
                 <RedInstagramIcon />
-                <p className='text-content-tertiary text-xs'>Instagram</p>
+                <p className='text-xs text-content-tertiary'>Instagram</p>
               </button>
               <button className='flex flex-col items-center gap-1'>
                 <RedTelegramIcon />
-                <p className='text-content-tertiary text-xs'>Telegram</p>
+                <p className='text-xs text-content-tertiary'>Telegram</p>
               </button>
               <button className='flex flex-col items-center gap-1'>
                 <RedFacebookIcon />
-                <p className='text-content-tertiary text-xs'>Facebook</p>
+                <p className='text-xs text-content-tertiary'>Facebook</p>
               </button>
             </div>
           </div>

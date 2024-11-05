@@ -1,21 +1,3 @@
-body {
-  background-color: #000;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-.video-container {
-  width: 100%;
-  max-width: 1440px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  /* make full screen size */
-  align-items: center;
-}
 video {
   /* flex-grow: 1; */
   flex-shrink: 0;
@@ -55,26 +37,6 @@ video {
 .volume,
 .time {
   cursor: pointer;
-}
-
-.player-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px;
-  width: 100%;
-}
-
-.player-header .left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.player-header .right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 .movie-title {
