@@ -47,7 +47,7 @@ export default function MediatekaPage() {
         </div>
         <div className="see-movies">
           <h2>
-            <a href="#">Oxirgi ko’rilganlar</a>
+            <a href="#">Oxirgi ko’rilganlar </a>
           </h2>
           <div className="slider-list-movies">
             {/* <div className="item-slick">@@include('parts/slider-item.html')</div>
