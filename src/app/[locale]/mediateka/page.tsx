@@ -57,5 +57,5 @@ export default function MediatekaPage() {
         </div>
       </div>
     </section>
-  );
+  );   
 }
