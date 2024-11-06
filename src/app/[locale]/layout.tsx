@@ -14,6 +14,8 @@ import '@/src/styles/globals.css'
 
 import '@/src/styles/custom.css'
 
+import '@/src/styles/mynew.css'
+
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
   variable: '--manrope'
