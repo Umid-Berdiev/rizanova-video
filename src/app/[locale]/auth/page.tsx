@@ -19,7 +19,7 @@ export default async function Auth({
         </div>
       </div>
       <div className='right'>
-        <div className='logo-text'>
+        <div className='logo-text font-serif'>
           <span className='red-text'>RizaNova</span>
           <span className='white-text'>Kino</span>
         </div>

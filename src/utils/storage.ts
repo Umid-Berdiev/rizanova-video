@@ -1,4 +1,4 @@
-let prefix = 'my-app-'
+let prefix = '_rizanova_'
 
 const tryParseJSON = (jsonString: string) => {
   try {

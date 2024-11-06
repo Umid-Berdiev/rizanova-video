@@ -1,3 +1,4 @@
+import { getSession } from '@/src/app/api/session/route'
 import createMiddleware from 'next-intl/middleware'
 import { NextRequest } from 'next/server'
 import { locales } from '../i18n/request'
@@ -5,17 +6,14 @@ import { localePrefix } from './navigation'
 
 type CustomMiddleware = (req: NextRequest) => Promise<NextRequest>
 const customMiddleware: CustomMiddleware = async req => {
-  console.log('Custom middleware executed before next-intl')
+  const session = await getSession()
+  const { isLoggedIn, user, locale: sessionLocale } = session
+  const isAuthenticated = isLoggedIn && user
 
-  // put default locale to the beginning of the path if it's not there
-  const path = req.nextUrl.pathname
-  const pathArr = path.split('/')
+  console.log('session: ', session)
 
-  console.log({ pathArr })
-
-  if (!locales.includes(pathArr[1])) {
-    pathArr.splice(1, 0, 'ru')
-    req.nextUrl.pathname = pathArr.join('/')
+  if (!isAuthenticated && !req.nextUrl.pathname.includes('/auth')) {
+    req.nextUrl.pathname = `/auth`
   }
 
   return req
@@ -31,7 +29,6 @@ export default async function middleware(
   req: NextRequest
 ): Promise<ReturnType<typeof intlMiddleware>> {
   await customMiddleware(req)
-
   return intlMiddleware(req)
 }
 
