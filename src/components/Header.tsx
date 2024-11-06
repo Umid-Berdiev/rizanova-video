@@ -12,9 +12,13 @@ interface Props {
   locale: string
 }
 
+
 export const Header: FC<Props> = ({ locale }) => {
   const t = useTranslations('')
   const pathname = usePathname()
+
+  const isHomepage = ( pathname === '/ru'|| pathname === '/en' ||pathname === '/uz' );
+  console.log('pathname', pathname);
 
   return (
     <>
@@ -22,69 +26,69 @@ export const Header: FC<Props> = ({ locale }) => {
         pathname?.startsWith(`/${locale}/auth`) ||
         pathname?.startsWith(`/${locale}/player`)
       ) && (
-        <header>
-          <div className='wrapper'>
-            <a href={`/${locale}`} className='logo'>
-              <img src='/images/auth/logo.svg' alt='' />
-            </a>
-            <ul className='list-menu ml-auto'>
-              <li>
-                <a href='#'>Bosh sahifa</a>
-              </li>
-              <li>
-                <a href='#'>Kinolar</a>
-              </li>
-              <li>
-                <a href='#'>Seriallar</a>
-              </li>
-              <li>
-                <a href='#'>Primyera</a>
-              </li>
-              <li>
-                <a href='mediateka.html' className='active'>
-                  Mediateka
-                </a>
-              </li>
-            </ul>
-            {!pathname?.startsWith(`/${locale}/users`) && (
-              <div className='right-block gap-2'>
-                <form action='#' className='search-block mx-4'>
-                  <button type='submit'>
-                    <BiSearch size={24} />
+          <header className={isHomepage ? 'absoluty' : ''}>
+            <div className='wrapper'>
+              <a href={`/${locale}`} className='logo'>
+                <img src='/images/auth/logo.svg' alt='' />
+              </a>
+              <ul className='list-menu ml-auto'>
+                <li>
+                  <a href='#'>Bosh sahifa</a>
+                </li>
+                <li>
+                  <a href='#'>Kinolar</a>
+                </li>
+                <li>
+                  <a href='#'>Seriallar</a>
+                </li>
+                <li>
+                  <a href='#'>Primyera</a>
+                </li>
+                <li>
+                  <a href='mediateka.html' className='active'>
+                    Mediateka
+                  </a>
+                </li>
+              </ul>
+              {!pathname?.startsWith(`/${locale}/users`) && (
+                <div className='right-block gap-2'>
+                  <form action='#' className='search-block mx-4'>
+                    <button type='submit'>
+                      <BiSearch size={24} />
+                    </button>
+                    <input type='text' required placeholder='Search ...' />
+                  </form>
+
+                  <LangSwitcher />
+
+                  <button className='btn btn-circle btn-ghost'>
+                    <BellDotIcon />
                   </button>
-                  <input type='text' required placeholder='Search ...' />
-                </form>
 
-                <LangSwitcher />
+                  <UserDropdown locale={locale} />
 
-                <button className='btn btn-circle btn-ghost'>
-                  <BellDotIcon />
-                </button>
-
-                <UserDropdown locale={locale} />
-
-                <div className='hamburger open-sidebar'>
-                  <svg
-                    width='24'
-                    height='24'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M5 17H19M5 12H19M5 7H19'
-                      stroke='white'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
+                  <div className='hamburger open-sidebar'>
+                    <svg
+                      width='24'
+                      height='24'
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M5 17H19M5 12H19M5 7H19'
+                        stroke='white'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </header>
-      )}
+              )}
+            </div>
+          </header>
+        )}
 
       <div className='mobile-menu lg:hidden'>
         <div className='mobile-menu-body'>
