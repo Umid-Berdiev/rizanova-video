@@ -2,10 +2,12 @@
 
 import endpoints from '@/src/utils/api/endpoints'
 import { withAxios } from '@/src/utils/api/request'
+import { storeData } from '@/src/utils/storage'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { FaSpinner } from 'react-icons/fa'
 
 export default function SmsVerificationForm({ locale }: { locale: string }) {
   const t = useTranslations()
@@ -80,16 +82,18 @@ export default function SmsVerificationForm({ locale }: { locale: string }) {
 
     try {
       setIsLoading(true)
-      // Send verification code to the server
-      const { data: res } = await withAxios(locale)(endpoints.auth.verify, {
+
+      let res = await fetch('/api/verify', {
         method: 'POST',
-        data: {
-          code: verificationCode,
-          id: localStorage.getItem('sms-id')
-        }
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          code: verificationCode
+        })
       })
 
-      if (res.status === 'error') {
+      if (res.status !== 200) {
         console.log({ res })
 
         setErrorMessage(t('Tasdiqlashda xatolik'))
@@ -97,18 +101,23 @@ export default function SmsVerificationForm({ locale }: { locale: string }) {
         return
       }
 
-      if (!res.token) {
+      const data = await res.json()
+
+      if (data.user.profiles?.length === 0) {
+        storeData('phone', verificationCode)
         router.push(`/${locale}/auth/signup`)
       }
 
-      localStorage.removeItem('sms-id')
-      router.push('/')
+      storeData('token', data.user.token)
+      router.push(`/${locale}`)
     } catch (verifyError: any) {
       console.log({ verifyError })
 
       const message = verifyError.response?.data?.message || verifyError.message
       setErrorMessage(message)
       toast.error(errorMessage)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -173,6 +182,7 @@ export default function SmsVerificationForm({ locale }: { locale: string }) {
           onInput={handleInput}
           onKeyDown={event => moveFocus(event, 'prev')}
           autoComplete='off'
+          autoFocus
         />
         <input
           type='text'
@@ -228,7 +238,7 @@ export default function SmsVerificationForm({ locale }: { locale: string }) {
       </div>
       <button className='btn-custom btn-red' type='submit' disabled={isLoading}>
         <span>{t('Davom etish')}</span>
-        {isLoading && <i className='fa fa-spinner' aria-hidden='true'></i>}
+        {isLoading && <FaSpinner />}
       </button>
     </form>
   )

@@ -1,11 +1,10 @@
 'use client'
 
-import endpoints from '@/src/utils/api/endpoints'
-import { withAxios } from '@/src/utils/api/request'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa'
 import ReactInputMask from 'react-input-mask'
 
 export default function AuthForm({ locale }: { locale: string }) {
@@ -13,7 +12,6 @@ export default function AuthForm({ locale }: { locale: string }) {
   const [errorMessage, setErrorMessage] = useState('')
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [username, setUsername] = useState('')
 
   const defaultValues = {
     username: ''
@@ -30,20 +28,21 @@ export default function AuthForm({ locale }: { locale: string }) {
   async function onSubmit(data: any) {
     setIsLoading(true)
 
-    let { data: res } = await withAxios(locale)(endpoints.auth.loginWithPhone, {
+    let res = await fetch('/api/session', {
       method: 'POST',
-      data
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
 
-    if (res.status === 'error') {
+    if (res.status === 200) {
+      router.push(`/${locale}/auth/verify`)
+    } else {
       setErrorMessage(t('Источник не указан'))
-      return
     }
 
-    localStorage.setItem('sms-id', res.id)
-    localStorage.setItem('phone', data.username)
     setIsLoading(false)
-    router.push(`/${locale}/auth/verify`)
   }
 
   return (
@@ -65,7 +64,7 @@ export default function AuthForm({ locale }: { locale: string }) {
       </div>
       <button className='btn-custom btn-red' type='submit' disabled={isLoading}>
         <span>{t('Davom etish')}</span>
-        {isLoading && <i className='fa fa-spinner' aria-hidden='true'></i>}
+        {isLoading && <FaSpinner />}
       </button>
       <div className='sign-with-social'>
         <a href=''>

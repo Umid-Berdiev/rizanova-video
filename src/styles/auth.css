@@ -72,13 +72,13 @@ header .wrapper {
   padding: 20px;
   margin: 0 auto;
 }
-header .wrapper ul {
+/* header .wrapper ul {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-}
-@media (max-width: 767px) {
+} */
+/* @media (max-width: 767px) {
   header .wrapper ul {
     display: none;
   }
@@ -91,7 +91,7 @@ header .wrapper ul li a {
   padding: 4px;
   display: block;
   color: #fff;
-}
+} */
 header + section {
   padding-top: 192px;
 }
@@ -101,7 +101,7 @@ header + section {
   }
 }
 .logo-text span {
-  font-family: 'MagnetTrial';
+  /* font-family: 'MagnetTrial'; */
   font-size: 56px;
   font-weight: 700;
   line-height: 64px;
@@ -173,7 +173,7 @@ header + section {
 .verification-container input,
 h1,
 h2 {
-  font-family: 'MagnetTrial';
+  /* font-family: 'MagnetTrial'; */
   font-weight: 600;
 }
 h1 {
@@ -448,7 +448,7 @@ section.user-section .user-list .item img {
   margin-bottom: 12px;
 }
 section.user-section .user-list .item p {
-  font-family: 'MagnetTrial';
+  /* font-family: 'MagnetTrial'; */
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;

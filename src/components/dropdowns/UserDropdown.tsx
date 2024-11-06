@@ -3,17 +3,19 @@
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { BiMoon, BiPencil, BiSun, BiUser } from 'react-icons/bi'
+import { BsGear } from 'react-icons/bs'
 import { GoSignOut } from 'react-icons/go'
 import RedCheckedIcon from '../icons/RedCheckedIcon'
-import SettingsIcon from '../icons/SettingsIcon'
 import AppDialog from '../modals/AppDialog'
 
 export default function UserDropdown({ locale }: { locale: string }) {
   const t = useTranslations()
   const [themeDialog, setThemeDialog] = useState<HTMLDialogElement | null>(null)
   const { setTheme, resolvedTheme, themes, theme } = useTheme()
+  const router = useRouter()
 
   useEffect(() => {
     const themeDialog = document.getElementById(
@@ -22,11 +24,19 @@ export default function UserDropdown({ locale }: { locale: string }) {
     setThemeDialog(themeDialog)
   }, [])
 
+  useEffect(() => {
+    // TODO: close dropdown on router path change
+  })
+
   return (
     <>
       <div className='dropdown dropdown-end'>
-        <div tabIndex={0} role='button' className='btn btn-circle'>
-          <BiUser size={24} color='black' />
+        <div
+          tabIndex={0}
+          role='button'
+          className='group btn btn-circle bg-white'
+        >
+          <BiUser size={24} className='text-black group-hover:text-white' />
         </div>
         <div
           tabIndex={0}
@@ -43,14 +53,14 @@ export default function UserDropdown({ locale }: { locale: string }) {
             <div className='flex gap-6'>
               <Link
                 href='#'
-                className='flex flex-col items-center justify-between'
+                className='flex flex-col items-center justify-between text-white'
               >
                 <img src='/images/home/child.png' alt='' className='size-9' />
                 <span>Bolalar</span>
               </Link>
               <Link
                 href={`/${locale}/profile/edit`}
-                className='flex flex-col items-center'
+                className='flex flex-col items-center text-white'
               >
                 <span className='rounded-full bg-background p-2'>
                   <BiPencil size={24} />
@@ -61,10 +71,13 @@ export default function UserDropdown({ locale }: { locale: string }) {
           </div>
           <ul className='divide-y divide-[#2E2C30] text-base'>
             <li className='gap-3'>
-              <Link href={`/${locale}/profile`} className='px-4 py-3'>
-                <SettingsIcon />
+              <button
+                className='px-4 py-3'
+                onClick={() => router.push(`/${locale}/profile`)}
+              >
+                <BsGear size={24} />
                 <span>{t('Sozlamalar')}</span>
-              </Link>
+              </button>
             </li>
             <li className='gap-3'>
               <button
