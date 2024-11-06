@@ -1,3 +1,7 @@
+.dropdown-dark .dropdown-menu .dropdown-item{
+    color: #fff !important;
+}
+
 @media (max-width: 767px) {
     .hdr-user-dropdown {
         min-width: 250px;
@@ -14,8 +18,5 @@
     .btn-custom svg {
         flex: 0 0 24px;
         height: 24px;
-    }
-    .dropdown-dark .dropdown-menu .dropdown-item{
-        color: #fff !important;
     }
 }

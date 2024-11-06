@@ -34,7 +34,7 @@ export default function UserDropdown({ locale }: { locale: string }) {
         <div
           tabIndex={0}
           role='button'
-          className='group btn btn-circle bg-white'
+          className='group btn btn-circle'
         >
           <BiUser size={24} className='text-black group-hover:text-white' />
         </div>

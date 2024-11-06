@@ -85,8 +85,8 @@ export default function VideoPlayer() {
   }, [isPlaying])
 
   return (
-    <section className='mx-auto flex h-screen w-full max-w-[1440px] flex-col items-center'>
-      <div className='w-full p-10'>
+    <section className='my-video-section mx-auto flex w-full h-full relative flex-col items-center'>
+      <div className='w-full p10 absolute left-0 top-0 right-0'>
         <div className='flex items-center justify-between text-white'>
           <div className='flex items-center gap-4'>
             {/* go back btn */}
@@ -116,7 +116,7 @@ export default function VideoPlayer() {
         src='/videos/template.mp4'
         onClick={togglePlay}
       ></video>
-      <div className='player-footer'>
+      <div className='player-footer p10 absolute left-0 right-0 bottom-0'>
         <div className='progress-wrapper'>
           <div className='progress-bar' ref={progressBar}>
             <div className='progress' ref={progress}></div>

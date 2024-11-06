@@ -2,18 +2,22 @@ video {
   /* flex-grow: 1; */
   flex-shrink: 0;
   object-position: center;
-  object-fit: fill;
+  object-fit: contain;
   height: 100%;
-  max-height: 665px;
+  padding: 130px 0;
+  max-height: 100dvh;
   cursor: pointer;
-  width: 1440px;
+  max-width: 100%;
+  width: 100%;
 }
+
 .controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 24px;
 }
+
 .controls .left,
 .controls .right {
   display: flex;
@@ -21,6 +25,7 @@ video {
   align-items: center;
   gap: 24px;
 }
+
 .progress-bar {
   flex: 1;
   height: 5px;
@@ -28,11 +33,13 @@ video {
   margin: 0 10px;
   cursor: pointer;
 }
+
 .progress {
   width: 0;
   height: 100%;
   background: #f00;
 }
+
 .play-pause,
 .volume,
 .time {
@@ -51,7 +58,6 @@ video {
 }
 
 .player-footer {
-  padding: 40px;
   width: 100%;
 }
 
@@ -75,4 +81,30 @@ video {
   right: 0;
   z-index: 1;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.p10 {
+  padding: 40px;
+}
+
+.my-video-section {
+  min-height: 100dvh;
+}
+
+@media (max-width: 1700px) {
+  .p10 {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .my-video-section .controls {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .controls>div {
+    width: 100%;
+  }
 }
